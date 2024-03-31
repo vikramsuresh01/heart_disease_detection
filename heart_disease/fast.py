@@ -2,6 +2,7 @@ from fastapi import FastAPI, Form, Request
 from fastapi.templating import Jinja2Templates
 from pymongo import MongoClient
 from pydantic import BaseModel
+import joblib
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -12,10 +13,13 @@ client = MongoClient(uri)
 db = client["heart_disease_db"]
 collection = db["heart_disease_data"]
 
+# Load trained model
+model = joblib.load("heart_decision_tree_model.pkl")
+
 # Pydantic model for input data
 class InputData(BaseModel):
     age: int
-    sex: str
+    sex: int
     chest_pain_type: int
     resting_bp: int
     serum_cholesterol: int
@@ -68,6 +72,16 @@ async def submit_data(
         thal=thal,
     )
     inserted_data = collection.insert_one(input_data.dict())
+    
+    # Convert input data to a list of numerical values
+    input_values = list(input_data.dict().values())
+
+    # Make predictions
+    target = model.predict([input_values])
+    
+    # Save prediction outcome back into the database
+    collection.update_one({"_id": inserted_data.inserted_id}, {"$set": {"target": int(target[0])}})
+    
     return templates.TemplateResponse(
-        "confirmation.html", {"request": request, "inserted_id": str(inserted_data.inserted_id)}
+        "confirmation.html", {"request": request, "inserted_id": str(inserted_data.inserted_id), "target": target[0]}
     )

@@ -18,6 +18,14 @@
               <a href="/" class="btn btn-primary">Go Back</a>
             </div>
           </div>
-    </div>
+          {% if target == 1 %}
+          <div class="alert alert-danger" role="alert">
+              The patient has a heart disease!
+          </div>
+      {% elif target == 0 %}
+          <div class="alert alert-success" role="alert">
+              The patient does not have a heart disease!
+          </div>
+      {% endif %}
 </body>
 </html>
