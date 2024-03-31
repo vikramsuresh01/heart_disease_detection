@@ -16,8 +16,8 @@ The user entered the following parameters:
 - Number of Major Vessels Colored by Flourosopy
 - Thalassemia
 
-The model used is a DecisionTreeClassifier as it is very effective in classification tasks, in this case, we classify whether or not the patient has a heart disease.
-The accuracy of the DecisionTreeClassifier model came to be: 0.9853658536585366
+The model used is a DecisionTreeClassifier as it is very effective in classification tasks, in this case, we classify whether or not the patient has a heart disease.<br />
+The accuracy of the DecisionTreeClassifier model came to be: 0.9853658536585366<br />
 
 The tech stack of the project includes the following components:
 
