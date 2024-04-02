@@ -35,3 +35,27 @@ Backend:
 - scikit-learn: Library used for machine learning model training and prediction.
 - Joblib: Used for saving and loading machine learning models.
 - Pandas: Library used for data manipulation and analysis in Python.
+
+To run my application, open all the files in your IDE and make sure to import the following packages:
+ - fastapi
+ - uvicorn
+ - joblib
+ - pandas
+ - scikit-learn
+ - Jinja2
+ - pymongo
+
+To use my MongoDB Cluster, enter the password for my user 'vs7552', otherwise set up your own URI using the following instructions:
+Setting up MongoDB URI:
+
+Go to the MongoDB website and sign in to your MongoDB Atlas account (or sign up if you don't have one).
+Create a new cluster or use an existing one.
+Once your cluster is set up, navigate to the "Clusters" section and click on the "Connect" button for your cluster.
+Choose "Connect your application" and copy the connection string (URI). It should look similar to this:
+php
+Copy code
+mongodb+srv://<username>:<password>@<cluster-url>/<dbname>?retryWrites=true&w=majority
+Replace <username>, <password>, <cluster-url>, and <dbname> with your actual MongoDB credentials and database name.
+
+Use the FastAPI command to run the program:
+uvicorn fast:app --reload
