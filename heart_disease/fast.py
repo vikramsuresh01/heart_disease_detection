@@ -1,14 +1,16 @@
+# Importing necessary libraries
 from fastapi import FastAPI, Form, Request
 from fastapi.templating import Jinja2Templates
 from pymongo import MongoClient
 from pydantic import BaseModel
 import joblib
 
+# Creating FastAPI instance
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 # MongoDB setup
-uri = "mongodb+srv://vs7552:heart@heartdata.qs1nszn.mongodb.net/?retryWrites=true&w=majority&appName=heartdata"
+uri = "mongodb+srv://vs7552:<password>@heartdata.qs1nszn.mongodb.net/?retryWrites=true&w=majority&appName=heartdata"
 client = MongoClient(uri)
 db = client["heart_disease_db"]
 collection = db["heart_disease_data"]
