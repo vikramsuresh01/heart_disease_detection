@@ -55,7 +55,7 @@ Choose "Connect your application" and copy the connection string (URI). It shoul
 php
 Copy code
 mongodb+srv://<username>:<password>@<cluster-url>/<dbname>?retryWrites=true&w=majority
-Replace <username>, <password>, <cluster-url>, and <dbname> with your actual MongoDB credentials and database name.
+Replace with your actual MongoDB credentials and database name.
 
 Use the FastAPI command to run the program:
 uvicorn fast:app --reload
